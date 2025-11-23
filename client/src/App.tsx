@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
+import { MobileNav } from "@/components/mobile-nav";
 import Dashboard from "@/pages/dashboard";
 import Vaults from "@/pages/vaults";
 import IntentLab from "@/pages/intent-lab";
@@ -32,7 +33,10 @@ function App() {
         <TooltipProvider>
           <div className="min-h-screen bg-background">
             <Navbar />
-            <Router />
+            <div className="pb-20 md:pb-0">
+              <Router />
+            </div>
+            <MobileNav />
           </div>
           <Toaster />
         </TooltipProvider>

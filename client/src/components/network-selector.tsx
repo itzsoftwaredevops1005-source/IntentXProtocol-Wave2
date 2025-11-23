@@ -8,8 +8,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Network, ChevronDown, CheckCircle2 } from "lucide-react";
+import { useMediaQuery } from "@/hooks/use-mobile";
 import type { Network as NetworkType } from "@shared/schema";
 
 const NETWORKS: NetworkType[] = [
@@ -57,6 +59,57 @@ const NETWORKS: NetworkType[] = [
 
 export function NetworkSelector() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkType>(NETWORKS[0]);
+  const [open, setOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  if (isMobile) {
+    return (
+      <Sheet open={open} onOpenChange={setOpen}>
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={() => setOpen(true)}
+          data-testid="button-network-selector"
+        >
+          <Network className="w-5 h-5" />
+        </Button>
+        <SheetContent side="bottom" className="h-auto">
+          <SheetHeader className="text-left mb-4">
+            <SheetTitle>Select Network</SheetTitle>
+          </SheetHeader>
+          <div className="space-y-2">
+            {NETWORKS.map((network) => (
+              <div
+                key={network.id}
+                onClick={() => {
+                  setSelectedNetwork(network);
+                  setOpen(false);
+                }}
+                className="flex items-center justify-between p-4 rounded-lg border border-border hover:bg-muted cursor-pointer transition-colors"
+                data-testid={`network-${network.id}`}
+              >
+                <div className="flex items-center gap-3 flex-1">
+                  <div className={`w-3 h-3 rounded-full ${network.color} bg-current`} />
+                  <div>
+                    <p className="font-medium text-foreground">{network.name}</p>
+                    <p className="text-xs text-muted-foreground">Chain ID: {network.chainId}</p>
+                  </div>
+                </div>
+                {selectedNetwork.id === network.id && (
+                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                )}
+              </div>
+            ))}
+            <div className="pt-2 border-t border-border">
+              <Badge variant="outline" className="text-xs">
+                Testnet Mode
+              </Badge>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
+    );
+  }
 
   return (
     <DropdownMenu>
