@@ -71,36 +71,36 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {analyticsLoading ? (
           Array.from({ length: 4 }).map((_, idx) => (
-            <Card key={idx} className="p-6 bg-card border-card-border animate-pulse">
+            <Card key={idx} className="p-4 md:p-6 bg-card border-card-border animate-pulse">
               <div className="flex items-start justify-between mb-4">
-                <div className="w-11 h-11 rounded-lg bg-muted" />
+                <div className="w-10 h-10 md:w-11 md:h-11 rounded-lg bg-muted" />
                 <div className="w-16 h-6 rounded bg-muted" />
               </div>
               <div className="space-y-2">
                 <div className="h-3 bg-muted rounded w-24" />
-                <div className="h-9 bg-muted rounded w-32" />
+                <div className="h-8 md:h-9 bg-muted rounded w-32" />
               </div>
             </Card>
           ))
         ) : (
           stats.map((stat, idx) => (
-            <Card key={idx} className="p-6 bg-card border-card-border hover-elevate transition-all duration-200" data-testid={`stat-card-${idx}`}>
+            <Card key={idx} className="p-4 md:p-6 bg-card border-card-border hover-elevate transition-all duration-200" data-testid={`stat-card-${idx}`}>
               <div className="flex items-start justify-between mb-4">
-                <div className={`p-3 rounded-lg bg-gradient-to-br ${stat.gradient}`}>
-                  <stat.icon className="w-5 h-5 text-white" />
+                <div className={`p-2 md:p-3 rounded-lg bg-gradient-to-br ${stat.gradient}`}>
+                  <stat.icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
                 </div>
-                <Badge variant="outline" className="text-green-400 border-green-800 bg-green-900/20" data-testid={`stat-change-${idx}`}>
+                <Badge variant="outline" className="text-xs md:text-sm text-green-400 border-green-800 bg-green-900/20" data-testid={`stat-change-${idx}`}>
                   {stat.change}
                 </Badge>
               </div>
               <div className="space-y-1">
-                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                <p className="text-xs md:text-sm font-medium text-muted-foreground uppercase tracking-wide">
                   {stat.label}
                 </p>
-                <p className="text-3xl font-bold font-mono text-foreground" data-testid={`stat-value-${idx}`}>
+                <p className="text-2xl md:text-3xl font-bold font-mono text-foreground" data-testid={`stat-value-${idx}`}>
                   {stat.value}
                 </p>
               </div>
