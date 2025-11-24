@@ -1,2 +1,3 @@
-# IntentXProtocol
-IntentX is an AI-driven DeFi execution protocol that lets users express natural-language intents like “maximize my yield.” It automates cross-protocol strategies, optimizes performance, and executes on-chain actions securely — redefining how users interact with decentralized finance.
+# IntentXProtocol-Wave2 
+IntentX is an advanced, AI-powered decentralized finance protocol that transforms complex DeFi interactions into simple, natural-language intents.
+Built on BlockDAG, the platform automates yield strategies, optimizes swaps, reduces gas usage, and delivers intelligent execution with real-time analytics.
